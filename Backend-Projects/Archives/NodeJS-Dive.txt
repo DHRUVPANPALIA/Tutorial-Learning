@@ -1,0 +1,423 @@
+Node.js
+- No access to browser apis
+- No DOM, No Geo-location, No Fetch Browser goodies
+- Pure logic
+- File System, OS Details
+- Based on versions
+
+
+
+// Globals - No Window !!!
+
+// __dirname	-	path to current directory.
+// __filename	-	file name.
+// require	-	function to use modules.
+// module	-	info about current module(file).
+//process	-	info about env where the program is being executed.
+
+
+// CommonJS, every file is module (by default)
+// Modules - Encapsulated Code (only share minimum)
+
+ES6 Syntax KeyNames same as values.
+const john = 'john'
+
+module is an object.
+module.exports = { john, peter}
+john and peter are two properties.
+
+
+
+const {john, peter} = require('./04-names')	Array Destructuring
+const sayHi = require('./05-utils')
+
+sayHi('susan')
+sayHi('john')
+sayHi('peter')
+
+
+				CORE MODULES
+	
+	* Path 
+- join: Join all arguments as a path
+- basename: returns name of file or  argument at last in a path
+- resolve: returns an absolute path.
+
+const path = require('path')
+// console.log(path.sep)   // Returns platorm sepcific separator
+
+console.log(__dirname)
+const absolute = path.resolve(__dirname, 'content', 'subfolder', 'test.txt')                // Our Project will run on various  environments
+console.log(absolute)
+
+
+
+
+	fs
+{ readFileSync, writeFileSync }
+readFileSync: 
+	Two params  
+		1. path	
+		2. encoding method
+EX:
+const { readFileSync, writeFileSync } = require('fs')
+
+const first = readFileSync('./content/first.txt','utf8')
+const second= readFileSync('./content/second.txt','utf8')
+
+To append in
+	- options object { flag: 'a' }
+
+writeFileSync(
+    './content/result-sync.txt',
+    `Here is resultant`,
+    {flag : 'a'}
+)
+
+
+Async Approach
+
+readFile(
+	'path',
+	'utf8',
+	(err, result) => {
+	if(err){
+	clg(err)
+	return
+	}
+	clg(result)
+)
+const first =result
+
+What is Event Loop?
+	- Allows Node.js to perform non-blocking I/O operations - despite
+	since JS is single-threaded-by offloading operations to the system kernel 
+	- Offload the tasks, time  consuming operations.
+	- Browser provides the apis where we dont have to provide blocking code.
+	- Event loop registers the callback, what need to be done when the task is complete.
+	
+
+// Blocking Code
+	- A nested for loop
+	- Synchronous Code that's why we prefer asynchronous.
+
+
+
+//Promise
+const { readFile } = require('fs')
+
+const getText = (path) =>{
+	return new Promise((resolve,reject)=>{
+	readFile('./content/first.txt','utf8',(err, data) => {
+	if (err) {
+	 reject(err)
+	} else {
+	 resolve(data)
+	}
+  }) 
+ })
+}
+
+
+
+
+
+readFile('./content/first.txt','utf8',(err, data) => {
+	if (err) {
+	 return
+	} else {
+	 console.log(data)
+	}
+})
+
+
+Events
+
+ = Event-Driven Programming
+ = Used Heavily in Node.js 
+
+ = Two Options:
+	Create something custom: Extend the class
+	Emit an event and listen to it: Simply just create the instance 
+
+	on- listen for an event
+	emit- emit an event
+
+
+Eg:
+const EventEmitter = require('events')
+
+const customEmitter = new EventEmitter()
+
+customEmitter.on('response', ()=>{
+    console.log(`data received`)
+})
+
+customEmitter.emit('response')
+
+
+
+
+STREAMS
+	= Read or write sequentially when we have to handle and manipulate the
+	streaming data.for a continous source or a big file 
+
+	Writeable
+	Readable
+	Duplex
+	Transform
+
+	= Streams extends emitters class
+
+	const {createReadStream} = require('fs');
+
+const stream = createReadStream('./content/big.txt')
+
+stream.on('data',(result)=>{
+    console.log(result)
+})
+
+	Reading data in chunks
+
+const {createReadStream} = require('fs');
+
+const stream = createReadStream('./content/big.txt',{highWaterMark: 90000, encoding: 'utf-8'})
+
+stream.on('data',(result)=>{
+    console.log(result)
+})
+
+
+
+
+
+
+
+
+
+
+30-01-24
+
+const express = require('express')
+const app =  express()
+
+
+app.get('/',(req, res)=>{
+    res.status(200).send('Home Page')
+})
+
+app.get('/about',(req,res)=>{
+    res.status(200).send('About Page')
+})
+
+app.all('*',(req,res)=>{
+    res.status(404).send('<h1>Resource not found</h1>')
+})
+
+app.listen(5000,()=>{
+    console.log('Server is listening on port 5000, https://127.0.0.1:5000/')
+
+})
+
+// app.get
+// app.post
+// app.put
+// app.delete
+// app.use      use for middleware
+// app.listen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // 1st Example
+
+// {const {john, peter} = require('./04-names')
+// const sayHi = require('./05-utils')
+
+// sayHi('susan');
+// sayHi('john')
+// sayHi('peter')
+// }
+
+
+
+// console.log(__dirname)
+
+// const { writeFileSync } =  require('fs')
+// writeFileSync(
+//     './content/result-sync.txt',
+//     `Here is resultant`,
+//     {flag : 'a'}
+// )
+
+
+const { readFile, writeFile } = require('fs').promises
+const util = require('util')
+const readFilePromise = util.promisify(readFile)
+const writeFilePromise = util.promisify(writeFile)
+
+// const getText = (path) =>{
+// 	return new Promise((resolve,reject)=>{
+// 	readFile('./content/first.txt','utf8',(err, data) => {
+// 	if (err) {
+// 	 reject(err)
+// 	} else {
+// 	 resolve(data)
+// 	}
+//   }) 
+//  })
+// }
+
+// getText('./content/first.txt')
+// .then((result) => console.log(result))
+// .catch((err) =>  console.log(err))
+  
+const start = async () => {
+    try {
+        const first = await readFilePromise('./content/first.txt','utf8')
+        const second = await readFilePromise('./content/second.txt','utf8')
+        await writeFilePromise(
+            './content/result-mind-grenade.txt',
+            `THIS IS  AWESOME: ${first}, ${second}`,
+            { flag: 'a'}
+        )        
+        console.log(first, second)
+        // const third = await readFile('./content/result-mind-grenade.txt','utf8')
+        // console.log(third)
+    } catch (error) {
+        console.log(error)
+    }    
+    // start()
+
+}
+
+start() 
+
+
+Static files are those files which server doesnt have to change
+Server-side rendering, template engine
+Static assets
+
+const express = require('express')
+const path = require('path')
+const app = express()
+const port = 5000
+
+// setup static and middleware  
+app.use(express.static('./public/navbar-app'))
+app.get('/', (req, res) => res.sendFile(path.resolve(__dirname,'./navbar-app/index.html')))
+app.all('*',(req,res)=>res.status(404).send('resource not found'))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+
+
+
+			API 	VS 		SSR
+		API- JSON		SSR- TEMPLATE
+		SEND DATA		SEND TEMPLATE
+		RES.JSON()		RES.RENDER()
+
+API- Setting up an http interface to interact with our data.
+Data is sent using json JavaScript objct notation
+
+	res.json()- Sets up the proper content type and stringify our data.
+	res.render- Sets up templates and send back entire html, js  and css
+
+
+
+
+When you have a collection of  data to be sent over 
+Iterate over my product - map method
+
+ 
+Query String Parameter or URL  Parameter
+	- They are a way for us to send small amounts of information to the server
+	using the url.
+	- For Example: Query  or filter results and that's really up to the people
+	who are setting up the server they decide
+
+	Course: hackernews algolia api
+
+
+
+
+
+const {products} = require('./data')
+
+app.get('/', (req, res) => 
+res.send('<h1>Products</h1><a href="/api/products">products'))
+
+app.get('/api/products', (req, res) => {
+    const newProducts = products.map((product)=>{
+        const {id, name, image} = product;
+        return {id, name, image}
+    })
+    res.json(newProducts)
+})
+app.get('/api/products/:productID', (req, res) => {
+    console.log(req.params)
+    const {productID} = req.params
+    const singleProduct = products.find((product) => product.id === Number(productID)) 
+    if (!singleProduct) {
+        return res.status(404).send('Product Does Not Exist')
+    }
+    return res.json(singleProduct)
+})
+
+app.get('/api/v1/query', (req, res) => {
+    console.log(req.query)
+    const {search, limit} = req.query
+    let sortedProducts = [...products]
+
+    if (search) {
+        sortedProducts = sortedProducts.filter((product) => {
+            return product.name.startsWith(search)
+        })
+    }
+
+    if (limit) {
+        sortedProducts = sortedProducts.slice(0, Number(limit))
+    }
+    res.status(200).json(sortedProducts)
+
+    res.send('Hello World')
+})
+
+Middleware comes in between so middle is the name, we do something with the
+request and pass it to the  response
+Middleware needs to be terminated by passing to the next middleware function.
+What if we have 50 routes, we  wont want to add this fun to each one of them either,
+	there would likely a method which would add middleware function to any route 
+	logger.js
+app.use will invoke this for any routes.Here, order mstters, it must be before all the routes.
+Middleware function is executed when the base of  the request path matches so  this is going to be our base
+
+	1. use vs route
+	2. options - our own / express / third party
+

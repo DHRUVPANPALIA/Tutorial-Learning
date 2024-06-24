@@ -1,0 +1,193 @@
+			NodeJs
+
+ - Open Source
+ - Cross Platform
+ - JavaScript Based
+ - Every Server Side Technology
+		a) Request Object
+			- Request Form Data
+			- Request Query String
+			- Request Cookies
+			- Request Session
+			- Local Storage
+		b) Response Object
+			- File Response
+			- JSON Response
+			- HTML Response
+			- Cookie
+
+ 		c) Application Object
+		d) Session Object
+		e) Cookie Object
+
+
+
+ Features of NodeJS
+
+ 1) Modular Approach: It will load only the library required
+for the situation.
+ 2) Single Threaded 
+ 3) Async - Non Blocking.
+ 4) NodeJS not good CPU. 
+It can perform all the tasks simultaneously at the same time aynchronous approach.
+All four are  requested.The lightweight comes first.
+ 5) No Buffering(Internet).
+ 6) Data Packets VideoQuality Auto-Rese.
+ 7) 
+
+NodeJS Server Side Programs are written in JavaScript file.
+
+compile "node-v8 compiler"
+
+JS
+-no DOM manipulations.
+
+npm init -y
+
+
+HTTP module
+To create web server in nodeJS we require Http module.
+HTTP module is responsible for handling the interactions from the client,
+process the request, generate a  response and return back to client.
+
+
+POSTMAN - Debugger
+SWAGGER
+FIDDLER
+
+
+NodeJS Server Side Objects
+ - Request
+ - Response
+ - Global Object
+				_dirname
+				_filename
+				processbuffer
+				setInterval()
+				setTimeout()
+ - OS Object
+			CPU
+			Process Server Name
+			IP
+			Uptime
+
+
+ 
+				Node.js REPL
+
+REPL stands for
+	- Read : Reads input from user and stores in memory
+	- Eval : It takes and evaluates the input value by using any expression.
+	- Print: Prints the result
+	- Loop : Loops over the command untill stopped [Batch Operation]
+
+			NodeJS Global Object
+	- Global Object provides set of properties and methods that are used to control server side actions.
+
+__dirname
+
+ - It returns the physical path of current working location.
+ - Every website comprises 
+		1. Virtual Path
+		http://localhost/site/page.html
+		2. Physical Path
+		C:\Website\page.html
+
+console.log(os.cpus());
+console.log(os.platform());
+console.log(os.arch());
+
+
+
+				NodeJS Event Loop and Emitter
+	- NodeJS  applications are  single threaded.
+	- Application run in event-driven.
+	- Event sends a message to subscriber in order
+	notify the change. It follows "Observer".
+	- The functions that listen to events will act as "Observers".
+	- NodeJS provides several built-in available from "events" module.
+	- All events are derived from a base class "EventEmitter";
+	- You can configure events to handle a sequence of operations.
+	- Two Techniques: Using Handler or directly configure  the event.  
+
+	1. Import EventEmitter from "events" module.
+	2. create an Event Emitter object.
+	3. Bind event and event handler.
+	4. Fire Event.
+
+
+					NodeJS Buffers
+
+	- A buffer is an area of memory.
+	- It represents a fixed-chunk of memory.
+	- It is allocated by JavaScript Engine "V8".
+	- NodeJS provides "Buffer" class with a set of properties and methods that are used to handle buffer.
+	- Buffers were introduced to  help developers to deal with binnary data.
+	- Buffers in NodeJS are not related to buffering, it is related to access data and store data in buffer.			Buffer vs Stream
+	
+	Images is converted inn form of chunks.
+
+	Streamis  cotinnous and Buffer is used to store in buffer memory.
+
+
+	Create Buffer
+
+	- Buffer.from()
+	- Buffer.alloc()
+	- Buffer.allocUnsafe()
+	
+	Syntax:
+
+	Buffer.alloc()  It must be initialized.
+	Buffer.allocUnsafe() No need to initialize 
+
+							NodeJS Streams
+	- Streams are used to handle reading and writing files in a network.
+	- Every server-side technology requires streams to read and write data into file.
+	- Node.js provides "fs" File Stream module, that comprises  of all properties and  mthod and handle read and
+	 write operations on file.
+	- Stream are different types:
+		1. Readable
+		2. Writable
+		3. Duplex
+		4. Transform
+
+	 
+	 				MiddleWare
+	- In any network based environment,its responsibility is to handle
+	communication between computers in a network.  				
+
+	- MiddleWare is a software framework which provides set of services and
+	capabilites to applications that are running in a network.
+	- It handles communication between computer in a network.
+		1. OS
+		2. Data Management
+		3. Application 
+		4. Messaging
+		5. Authentication
+		6. API Management
+		7. CORS(Cross Origin Resource Sharing)
+		8. XSRF[Cross Site Request Forgery]
+		9. XSS[Cross Site Scripting Attacks]
+
+	- MiddleWare are classified into various types
+		Message-Oriented MiddleWare [MOM]
+		Remote procedure call[RPC]
+		Data or Database
+		API MiddleWare
+		Object request  MiddleWare
+		Transactional MiddleWare
+		Asynchronous data streaming MiddleWare
+		Device MiddleWare
+		Portal MiddleWare
+		Robotics MiddleWare
+
+	- Middleware Software 
+		ExpressJS
+		IBM WebSphere
+		IBM MQ
+
+
+	COM Marshaling
+	Object-Binary-Object
+	

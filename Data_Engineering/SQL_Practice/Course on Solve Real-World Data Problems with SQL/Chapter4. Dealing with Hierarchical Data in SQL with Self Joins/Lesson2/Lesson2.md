@@ -22,9 +22,14 @@ In this lesson, we explore how to solve the user-admin problem using a self join
 2. **Initial Self Join**:
    - Perform a self join on the `users` table to see how it works:
      ```sql
-     SELECT u1.*, u2.* 
-     FROM users u1
-     LEFT JOIN users u2 ON u1.user_id = u2.user_id;
+     SELECT 
+        users, admin 
+     FROM 
+        users
+     LEFT JOIN 
+        users as admin
+     ON 
+        user.adminid = admin.adminid;
      ```
    - This query shows two copies of the dataset side by side but doesn’t answer the business question.
 
@@ -49,12 +54,6 @@ In this lesson, we explore how to solve the user-admin problem using a self join
 ### Final Output
 
 The result is a list showing each user's name alongside their admin’s name. This makes it easy to understand the relationships between users and admins.
-
-## Visual Aid
-
-![Self Join Example](path/to/self-join-example.png)
-
-*Visual representation of the self join process.*
 
 ## Conclusion
 

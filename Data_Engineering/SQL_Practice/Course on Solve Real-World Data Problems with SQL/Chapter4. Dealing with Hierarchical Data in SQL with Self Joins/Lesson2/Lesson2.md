@@ -47,14 +47,6 @@ In this lesson, we explore how to solve the user-admin problem using a self join
     ```
    - This query links each user to their corresponding admin.
 
-   - To match the IT request, select the `name` field from both tables and rename them for clarity:
-     ```sql
-     SELECT u1.name AS username, u2.name AS admin_name
-     FROM users u1
-     LEFT JOIN users u2 ON u1.admin_id = u2.user_id;
-     ```
-   - `username` is pulled from the first table (representing users), and `admin_name` is pulled from the second table (representing admins).
-
 ### Final Output
 
 The result is a list showing each user's name alongside their admin’s name. This makes it easy to understand the relationships between users and admins.

@@ -9,6 +9,8 @@ In this lesson, we explore the process of generating a report that lists each us
 - **Data Context**: The user and admin data are both stored in the `users` table. Each user has an associated `admin ID` which is also a `user ID` because all admins are users.
 
 - **Problem Statement**: Exporting the admin ID alone is not helpful to higher-level stakeholders who do not work with IDs. Instead, they require more understandable information, such as user names or emails.
+  ![Alt Text](./images/Problem_Sample.png)
+
 
 - **Solution**: To make the data more useful, convert the `admin IDs` into recognizable names. This involves:
   1. Matching each user's `admin ID` back to a `user ID`.
@@ -26,4 +28,4 @@ In this lesson, we explore the process of generating a report that lists each us
 
 ## Conclusion
 
-By thinking from the end-user's perspective and transforming IDs into meaningful names, you can deliver more actionable and
+By thinking from the end-user's perspective and transforming IDs into meaningful names, one can deliver more actionable and

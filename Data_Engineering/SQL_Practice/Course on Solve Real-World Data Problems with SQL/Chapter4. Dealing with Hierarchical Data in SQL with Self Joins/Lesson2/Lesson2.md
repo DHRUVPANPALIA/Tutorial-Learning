@@ -29,17 +29,22 @@ In this lesson, we explore how to solve the user-admin problem using a self join
      LEFT JOIN 
         users as admin
      ON 
-        user.adminid = admin.adminid;
+        user.userid = admin.userid;
      ```
    - This query shows two copies of the dataset side by side but doesn’t answer the business question.
 
 3. **Join on Admin ID**:
    - Modify the join to connect the `admin_id` of the first table to the `user_id` of the second table:
      ```sql
-     SELECT u1.*, u2.* 
-     FROM users u1
-     LEFT JOIN users u2 ON u1.admin_id = u2.user_id;
-     ```
+     SELECT 
+        users, admin 
+     FROM 
+        users
+     LEFT JOIN 
+        users as admin
+     ON 
+        user.adminid = admin.userid;   
+    ```
    - This query links each user to their corresponding admin.
 
 4. **Select Relevant Fields**:

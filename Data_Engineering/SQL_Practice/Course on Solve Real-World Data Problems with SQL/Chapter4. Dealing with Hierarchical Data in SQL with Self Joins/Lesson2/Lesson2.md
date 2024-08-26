@@ -47,7 +47,6 @@ In this lesson, we explore how to solve the user-admin problem using a self join
     ```
    - This query links each user to their corresponding admin.
 
-4. **Select Relevant Fields**:
    - To match the IT request, select the `name` field from both tables and rename them for clarity:
      ```sql
      SELECT u1.name AS username, u2.name AS admin_name

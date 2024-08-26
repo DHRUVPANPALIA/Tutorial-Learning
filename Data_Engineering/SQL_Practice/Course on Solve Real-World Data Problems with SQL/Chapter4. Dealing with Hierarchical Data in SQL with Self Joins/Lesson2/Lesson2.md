@@ -44,7 +44,7 @@ In this lesson, we explore how to solve the user-admin problem using a self join
         users as admin
      ON 
         user.adminid = admin.userid;   
-          ```
+     ```
    - This query links each user to their corresponding admin.
 
 4. **Select Relevant Fields**:
